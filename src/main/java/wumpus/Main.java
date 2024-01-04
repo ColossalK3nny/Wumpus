@@ -59,8 +59,8 @@ public class Main {
     private static void printFrame() {
         String border = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
         System.out.println(border);
-        System.out.println("w                        Welcome to Wumpus game                        w");
-        System.out.println("w                                                                      w");
+        System.out.println("w                        Welcome to the Wumpus game                    w");
+        System.out.println("w                 This is where you can feel the real fear             w");
         System.out.println(border);
     }
     private static Room[][] initializeRooms(int width, int height) {
