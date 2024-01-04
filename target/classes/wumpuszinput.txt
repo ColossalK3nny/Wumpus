@@ -1,0 +1,13 @@
+12 D 7 N
+WWWWWWWWWWWW
+W___P______W
+WU_P_______W
+W______U___W
+W__P_______W
+W_U_____U__W
+W___P______W
+W_____U____W
+W_PG_______W
+W____U__P__W
+WP__U___P__W
+WWWWWWWWWWWW
