@@ -5,7 +5,8 @@ import wumpus.map.Room;
 import wumpus.Wumpus;
 import java.util.Scanner;
 import java.io.IOException;
-
+import wumpus.Database.GameState;
+import wumpus.Player.Hero;
 public class MainMenu {
 
     private String playerName;
@@ -56,10 +57,24 @@ public class MainMenu {
             e.printStackTrace();
         }
     }
+
     public void load() {
-        // Mentett játék betöltése
-    }
-    public void save() {
-        // Jelenlegi játék mentése
+        GameState gameState = GameState.loadFromFile("src/main/resources/Database/gamestate.json");
+        if (gameState != null) {
+            this.rooms = gameState.getRooms();
+            int heroRow = gameState.getHeroRow();
+            int heroColumn = gameState.getHeroColumn();
+            char heroDirection = gameState.getHeroDirection();
+            int wumpusCount = gameState.getWumpusCount();
+            Hero hero = new Hero(heroDirection, wumpusCount);
+            hero.setArrows(gameState.getHeroArrows());
+            hero.setHasGold(gameState.isHeroHasGold());
+
+            GameMenu gameMenu = new GameMenu(rooms, heroRow, heroColumn, heroDirection, wumpusCount, this);
+
+            gameMenu.show();
+        } else {
+            System.out.println("Nem sikerült betölteni a mentett játékot.");
+        }
     }
 }

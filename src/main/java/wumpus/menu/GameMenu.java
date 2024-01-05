@@ -5,6 +5,7 @@ import wumpus.map.Room;
 import wumpus.Player.Hero;
 import java.util.Scanner;
 import wumpus.Database.Database;
+import wumpus.Database.GameState;
 public class GameMenu {
     private Scanner scanner;
     private Room[][] rooms;
@@ -17,6 +18,7 @@ public class GameMenu {
     private boolean isGameInitialized;
     private int stepsTaken;
     private MainMenu mainMenu;
+    private int wumpusCount;
     public GameMenu(Room[][] rooms, int heroRow, int heroColumn, char heroDirection, int wumpusCount, MainMenu mainMenu) {
         this.scanner = new Scanner(System.in);
         this.rooms = rooms;
@@ -29,6 +31,7 @@ public class GameMenu {
         this.isGameRunning = true;
         this.stepsTaken = 0;
         this.mainMenu = mainMenu;
+        this.wumpusCount = wumpusCount;
     }
     public void showHeroArrows() {
         System.out.println("The hero has " + hero.getArrows() + " arrows.");
@@ -47,7 +50,8 @@ public class GameMenu {
             System.out.println("3 - Turn right");
             System.out.println("4 - Shoot");
             System.out.println("5 - Pick gold");
-            System.out.println("6 - Quit");
+            System.out.println("6 - Save State");
+            System.out.println("7 - Quit");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -69,6 +73,13 @@ public class GameMenu {
                     pickGold();
                     break;
                 case 6:
+                    GameState gameState = new GameState(
+                            rooms, heroRow, heroColumn, hero.getHeroDirection(),
+                            wumpusCount, hero.getArrows(), hero.hasGold());
+                    gameState.save("src/main/resources/Database/gamestate.json");
+                    System.out.println("Game state saved successfully.");
+                    break;
+                case 7:
                     System.out.println("See you later " + Main.playerName + "!");
                     System.exit(0);
                     break;

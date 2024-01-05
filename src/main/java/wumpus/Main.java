@@ -31,7 +31,7 @@ public class Main {
                     mainMenu.loadFromFile();
                     break;
                 case 2:
-
+                mainMenu.load();
                     break;
                 case 3:
                     List<String> highScores = Database.getHighScores();

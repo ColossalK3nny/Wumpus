@@ -8,8 +8,15 @@ public class Hero {
     public Hero(char heroDirection, int initialArrows) {
         this.heroDirection = heroDirection;
         this.arrows = initialArrows;
+        this.hasGold = false;
+    }
+    public void setArrows(int arrows) {
+        this.arrows = arrows;
     }
 
+    public void setHasGold(boolean hasGold) {
+        this.hasGold = hasGold;
+    }
     public void turnRight() {
         switch (heroDirection) {
             case 'N': heroDirection = 'E'; break;
