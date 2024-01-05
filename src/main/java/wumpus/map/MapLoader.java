@@ -1,15 +1,17 @@
 package wumpus.map;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import wumpus.menu.GameMenu;
+import wumpus.menu.MainMenu;
 
 public class MapLoader {
     private Room[][] rooms;
 
-    public Room[][] loadMap(String fileName) throws IOException {
+    public Room[][] loadMap(String fileName, MainMenu mainMenu) throws IOException {
         InputStream is = getClass().getClassLoader().getResourceAsStream(fileName);
         if (is == null) {
             throw new IOException("File not found: " + fileName);
@@ -42,7 +44,7 @@ public class MapLoader {
             } else {
                 throw new IllegalArgumentException("Invalid hero starting position");
             }
-            GameMenu gameMenu = new GameMenu(rooms, heroRow, heroColumn - 'A', heroDirection, wumpusCount);
+            GameMenu gameMenu = new GameMenu(rooms, heroRow, heroColumn - 'A', heroDirection, wumpusCount, mainMenu);
             gameMenu.show();
         }
 

@@ -16,7 +16,8 @@ public class GameMenu {
     private boolean isGameRunning;
     private boolean isGameInitialized;
     private int stepsTaken;
-    public GameMenu(Room[][] rooms, int heroRow, int heroColumn, char heroDirection, int wumpusCount) {
+    private MainMenu mainMenu;
+    public GameMenu(Room[][] rooms, int heroRow, int heroColumn, char heroDirection, int wumpusCount, MainMenu mainMenu) {
         this.scanner = new Scanner(System.in);
         this.rooms = rooms;
         this.heroRow = heroRow;
@@ -27,6 +28,7 @@ public class GameMenu {
         this.isGameInitialized = false;
         this.isGameRunning = true;
         this.stepsTaken = 0;
+        this.mainMenu = mainMenu;
     }
     public void showHeroArrows() {
         System.out.println("The hero has " + hero.getArrows() + " arrows.");
@@ -78,6 +80,8 @@ public class GameMenu {
                 System.out.println("Your steps number is: " + stepsTaken);
                 Database.insertOrUpdateScore(Main.playerName); // Frissítjük a nyert meccsek számát
                 isGameRunning = false;
+                mainMenu.show();
+                int option = mainMenu.getOption();
             }
         }
     }
@@ -142,6 +146,9 @@ public class GameMenu {
             System.out.println();
         }
         hero.printHeroDirection();
+        if (hero.hasGold()) {
+            System.out.println("You are very very rich!");
+        }
     }
     public void shootArrow() {
         if (hero.getArrows() > 0) {
@@ -151,6 +158,7 @@ public class GameMenu {
             int col = heroColumn;
 
             while (!hitWall && !hitWumpus) {
+                // Mozgatja a nyilat az adott irányban
                 switch (hero.getHeroDirection()) {
                     case 'N':
                         row--;
@@ -165,24 +173,33 @@ public class GameMenu {
                         col--;
                         break;
                 }
-                if (row < 0 || row >= rooms.length || col < 0 || col >= rooms[0].length) {
+                if (row < 0 || row >= rooms.length || col < 0 || col >= rooms[0].length || rooms[row][col].getSymbol() == 'W') {
                     hitWall = true;
-                } else if (rooms[row][col].getSymbol() == 'W') {
-                    hitWall = true;
-                } else if (rooms[row][col].getSymbol() == 'U') {
-                    rooms[row][col].setSymbol('_');
-                    hitWumpus = true;
+                    System.out.println("Your arrow hit a wall or disappeared.");
+                } else {
+                    // Ellenőrzi a szomszédos cellákat Wumpus jelenlétére
+                    hitWumpus = checkForWumpusAround(row, col);
+                    if (hitWumpus) {
+                        System.out.println("You have killed a Wumpus!");
+                    }
                 }
             }
-            if (hitWumpus) {
-                System.out.println("You have killed a Wumpus!");
-            } else {
-                System.out.println("Your arrow hit a wall or disappeared.");
-            }
-            hero.shootArrow();
+            hero.shootArrow(); // Csökkenti a nyilak számát
         } else {
             System.out.println("You have no more arrows.");
         }
+    }
+    private boolean checkForWumpusAround(int row, int col) {
+        // Ellenőrzi a szomszédos cellákat
+        for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, rooms.length - 1); i++) {
+            for (int j = Math.max(col - 1, 0); j <= Math.min(col + 1, rooms[0].length - 1); j++) {
+                if (rooms[i][j].getSymbol() == 'U') {
+                    rooms[i][j].setSymbol('_'); // Eltávolítja a Wumpust
+                    return true; // Megtalálta a Wumpust
+                }
+            }
+        }
+        return false; // Nem talált Wumpust
     }
     private void pickGold() {
         if (rooms[heroRow][heroColumn].hasGoldOriginally()) {

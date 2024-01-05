@@ -1,43 +1,34 @@
 package wumpus;
 
-import wumpus.map.Room;
-import wumpus.map.MapLoader;
 import wumpus.menu.MainMenu;
-import wumpus.menu.GameMenu;
-import java.io.IOException;
+import wumpus.map.Room;
+import wumpus.Wumpus;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import wumpus.map.Clear;
-import wumpus.Database.Database;
 import java.util.List;
+import wumpus.Database.Database;
+
 public class Main {
     public static String playerName;
+
     public static void main(String[] args) {
-        Database.initialize();
         Scanner scanner = new Scanner(System.in);
         printFrame();
         System.out.print("Please enter your name: ");
-        playerName = scanner.nextLine(); // Itt már beállítjuk az osztályszintű változót
+        playerName = scanner.nextLine();
         System.out.println("Hi " + playerName + "! Welcome to the game!");
-        System.out.println("Choose an option");
+
         Room[][] rooms = initializeRooms(10, 10);
         Wumpus wumpus = new Wumpus(0, 0, 'N');
+
         MainMenu mainMenu = new MainMenu(playerName, wumpus, rooms);
-        mainMenu.show();
-        do {
+
+        boolean isRunning = true;
+        while (isRunning) {
+            mainMenu.show();
             int option = mainMenu.getOption();
             switch (option) {
                 case 1:
-                    try {
-                        MapLoader mapLoader = new MapLoader();
-                        rooms = mapLoader.loadMap("wumpuszinput.txt");
-                        System.out.println("Room sucessfully loaded.");
-                        printBoard(rooms);
-                    } catch (IOException e) {
-                        System.out.println("An error occurred while loading the room: " + e.getMessage());
-                        e.printStackTrace();
-                    }
+                    mainMenu.loadFromFile();
                     break;
                 case 2:
 
@@ -49,11 +40,13 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("See you later " + playerName + "!");
-                    System.exit(0);
+                    System.out.println("Exiting the game. Goodbye " + playerName + "!");
+                    isRunning = false;
                     break;
+                default:
+                    System.out.println("Invalid selection.");
             }
-        } while (true);
+        }
     }
     private static void printFrame() {
         String border = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
@@ -70,17 +63,5 @@ public class Main {
             }
         }
         return rooms;
-    }
-    private static void printBoard(Room[][] rooms) {
-        System.out.println("   " + IntStream.range('A', 'A' + rooms[0].length)
-                .mapToObj(i -> Character.toString((char) i))
-                .collect(Collectors.joining(" ")));
-        for (int i = 0; i < rooms.length; i++) {
-            System.out.print(i + " ");
-            for (int j = 0; j < rooms[i].length; j++) {
-                System.out.print(rooms[i][j].getSymbol() + " ");
-            }
-            System.out.println();
-        }
     }
 }

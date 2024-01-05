@@ -34,23 +34,19 @@ public class Database {
         }
     }
     public static Integer getCurrentBestScore(String playerName) {
-        String sql = "SELECT MIN(score) FROM scores WHERE player_name = ?";
+        String sql = "SELECT score FROM scores WHERE player_name = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, playerName);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    int score = rs.getInt(1);
-                    if (rs.wasNull()) {
-                        return null; // Ha nincs rekord, adjunk vissza null-t
-                    }
-                    return score; // Egyébként adjuk vissza a pontszámot
+                    return rs.getInt("score");
                 }
             }
         } catch (SQLException e) {
             System.out.println("Hiba a felhasználó pontszámának lekérdezésekor: " + e.getMessage());
         }
-        return null; // Ha nincs még pontszáma, vagy hiba történt
+        return null; // Ha nincs még rekord, adjunk vissza null-t
     }
     public static void insertOrUpdateScore(String playerName) {
         Integer currentScore = getCurrentBestScore(playerName);

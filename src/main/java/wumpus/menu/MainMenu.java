@@ -4,6 +4,7 @@ import wumpus.map.MapLoader;
 import wumpus.map.Room;
 import wumpus.Wumpus;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class MainMenu {
 
@@ -38,11 +39,19 @@ public class MainMenu {
     }
     public void startGame() {
         // Játék indítása
+        MapLoader mapLoader = new MapLoader();
+        try {
+            // Átadjuk a this referenciát, ami a MainMenu példány
+            Room[][] rooms = mapLoader.loadMap("wumpuszinput.txt", this);
+            // ... további logika ...
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void loadFromFile() {
         try {
             MapLoader mapLoader = new MapLoader();
-            this.rooms = mapLoader.loadMap("wumpuszinput.txt"); // Frissítse a rooms tömböt a betöltött pályával
+            this.rooms = mapLoader.loadMap("wumpuszinput.txt", this); // Frissítse a rooms tömböt a betöltött pályával
         } catch (Exception e) {
             e.printStackTrace();
         }
