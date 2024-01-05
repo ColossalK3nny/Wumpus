@@ -26,24 +26,78 @@ public class Database {
             // Játékállapotok táblája
             stmt.execute("CREATE TABLE IF NOT EXISTS game_states (" +
                     "id INTEGER PRIMARY KEY," +
-                    "player_name TEXT NOT NULL," +
+                    "player_name TEXT NOT NULL UNIQUE," +
                     "state TEXT NOT NULL," + // JSON formátumú játékállapot
                     "save_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
         } catch (SQLException e) {
             System.out.println("Hiba az adatbázis inicializálásakor: " + e.getMessage());
         }
     }
-    public static void insertScore(String playerName, int score) {
-        String sql = "INSERT INTO scores(player_name, score) VALUES(?,?)";
+    public static Integer getCurrentBestScore(String playerName) {
+        String sql = "SELECT MIN(score) FROM scores WHERE player_name = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int score = rs.getInt(1);
+                    if (rs.wasNull()) {
+                        return null; // Ha nincs rekord, adjunk vissza null-t
+                    }
+                    return score; // Egyébként adjuk vissza a pontszámot
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Hiba a felhasználó pontszámának lekérdezésekor: " + e.getMessage());
+        }
+        return null; // Ha nincs még pontszáma, vagy hiba történt
+    }
+    public static void insertOrUpdateScore(String playerName) {
+        Integer currentScore = getCurrentBestScore(playerName);
+
+        String sql;
+        if (currentScore == null) {
+            // Ha nincs még rekord, akkor beszúrás egy ponttal
+            sql = "INSERT INTO scores(player_name, score) VALUES(?, 1)";
+        } else {
+            // Ha már van rekord, akkor frissítés egy ponttal növelve
+            sql = "UPDATE scores SET score = score + 1 WHERE player_name = ?";
+        }
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerName);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Hiba a pontszám frissítésekor: " + e.getMessage());
+        }
+    }
+    private static void insertNewScore(String playerName, int score) {
+        String sql = "INSERT INTO scores(player_name, score) VALUES(?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, playerName);
             pstmt.setInt(2, score);
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("Beszúrt sorok száma: " + affectedRows);
         } catch (SQLException e) {
-            System.out.println("Hiba a pontszám beillesztésekor: " + e.getMessage());
+            System.out.println("Hiba az új pontszám beszúrásakor: " + e.getMessage());
         }
     }
+    private static void updateScore(String playerName, int score) {
+        String sql = "UPDATE scores SET score = ? WHERE player_name = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, score);
+            pstmt.setString(2, playerName);
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("Frissített sorok száma: " + affectedRows);
+        } catch (SQLException e) {
+            System.out.println("Hiba a pontszám frissítésekor: " + e.getMessage());
+        }
+    }
+
+
     public static void saveGameState(String playerName, String gameState) {
         String sql = "INSERT INTO game_states(player_name, state) VALUES(?,?)";
         try (Connection conn = getConnection();

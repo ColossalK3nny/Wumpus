@@ -47,7 +47,6 @@ public class Main {
                     for (String score : highScores) {
                         System.out.println(score);
                     }
-
                     break;
                 case 4:
                     System.out.println("See you later " + playerName + "!");

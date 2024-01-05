@@ -11,11 +11,11 @@ public class GameMenu {
     private Hero hero;
     private int heroRow;
     private int heroColumn;
-    private int initialHeroRow;  // Initial row of the hero
-    private int initialHeroColumn;  // Initial column of the hero
+    private int initialHeroRow;
+    private int initialHeroColumn;
     private boolean isGameRunning;
     private boolean isGameInitialized;
-    private int stepsTaken;  // Steps taken by the hero
+    private int stepsTaken;
     public GameMenu(Room[][] rooms, int heroRow, int heroColumn, char heroDirection, int wumpusCount) {
         this.scanner = new Scanner(System.in);
         this.rooms = rooms;
@@ -74,8 +74,9 @@ public class GameMenu {
                     System.out.println("Invalid choice. Try again.");
             }
             if (hero.hasGold() && heroRow == initialHeroRow && heroColumn == initialHeroColumn) {
-                System.out.println("Congratulations, you have completed the mission! It took you " + stepsTaken + " steps.");
-                Database.insertScore(Main.playerName, stepsTaken);
+                System.out.println("Congratulations, you have completed the mission!");
+                System.out.println("Your steps number is: " + stepsTaken);
+                Database.insertOrUpdateScore(Main.playerName); // Frissítjük a nyert meccsek számát
                 isGameRunning = false;
             }
         }
@@ -86,8 +87,8 @@ public class GameMenu {
                 if (rooms[i][j].getSymbol() == 'H') {
                     heroRow = i;
                     heroColumn = j;
-                    initialHeroRow = i; // Set initial row
-                    initialHeroColumn = j; // Set initial column
+                    initialHeroRow = i;
+                    initialHeroColumn = j;
                     rooms[i][j].setSymbol('_');
                     return;
                 }

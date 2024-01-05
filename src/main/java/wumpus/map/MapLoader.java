@@ -15,7 +15,7 @@ public class MapLoader {
             throw new IOException("File not found: " + fileName);
         }
 
-        int wumpusCount = 0; // Count the number of Wumpuses
+        int wumpusCount = 0;
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String firstLine = reader.readLine();
