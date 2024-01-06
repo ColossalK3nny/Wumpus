@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Clear {
     public static void clearScreen() {
         try {
-            new ProcessBuilder("clear").inheritIO().start().waitFor();
+            new ProcessBuilder("cls").inheritIO().start().waitFor();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

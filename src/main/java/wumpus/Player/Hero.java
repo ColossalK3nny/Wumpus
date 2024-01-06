@@ -42,10 +42,10 @@ public class Hero {
     public void printHeroDirection() {
         String directionArrow;
         switch (heroDirection) {
-            case 'N': directionArrow = "↑ (North)"; break;
-            case 'E': directionArrow = "→ (East)"; break;
-            case 'S': directionArrow = "↓ (South)"; break;
-            case 'W': directionArrow = "← (West)"; break;
+            case 'N': directionArrow = "^ (North)"; break;
+            case 'E': directionArrow = "> (East)"; break;
+            case 'S': directionArrow = "v (South)"; break;
+            case 'W': directionArrow = "< (West)"; break;
             default: directionArrow = "Unknown";
         }
         System.out.println("Hero's direction: " + directionArrow);

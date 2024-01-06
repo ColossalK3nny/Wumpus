@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class Database {
-    private static final String DB_URL = "jdbc:sqlite:src/main/resources/Database/wumpusdb.db";
+    private static final String DB_URL = "jdbc:sqlite:Wumpus/wumpusdb.db";
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL);
     }

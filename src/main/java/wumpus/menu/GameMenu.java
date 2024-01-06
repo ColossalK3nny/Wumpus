@@ -6,6 +6,7 @@ import wumpus.Player.Hero;
 import java.util.Scanner;
 import wumpus.Database.Database;
 import wumpus.Database.GameState;
+
 public class GameMenu {
     private Scanner scanner;
     private Room[][] rooms;
@@ -42,6 +43,7 @@ public class GameMenu {
                 initializeGame();
                 isGameInitialized = true;
             }
+
             updateAndDrawBoard();
             showHeroArrows();
             System.out.println("Choose an action:");
@@ -76,7 +78,7 @@ public class GameMenu {
                     GameState gameState = new GameState(
                             rooms, heroRow, heroColumn, hero.getHeroDirection(),
                             wumpusCount, hero.getArrows(), hero.hasGold());
-                    gameState.save("src/main/resources/Database/gamestate.json");
+                    gameState.save("Wumpus/gamestate.json");
                     System.out.println("Game state saved successfully.");
                     break;
                 case 7:

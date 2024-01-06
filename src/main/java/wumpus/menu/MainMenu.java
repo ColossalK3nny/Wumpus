@@ -59,7 +59,7 @@ public class MainMenu {
     }
 
     public void load() {
-        GameState gameState = GameState.loadFromFile("src/main/resources/Database/gamestate.json");
+        GameState gameState = GameState.loadFromFile("Wumpus/gamestate.json");
         if (gameState != null) {
             this.rooms = gameState.getRooms();
             int heroRow = gameState.getHeroRow();

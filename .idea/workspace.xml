@@ -6,10 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="ce0d0c3f-1abf-458b-b201-3bbd80ab5fb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Database/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Database/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Player/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Player/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/map/Clear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/map/Clear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/menu/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/menu/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Database/wumpusdb.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Database/wumpusdb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Database/wumpusdb.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Database/wumpusdb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/Database/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/Database/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/Player/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/Player/Hero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/Wumpus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/Wumpus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/map/Clear.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/map/Clear.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/map/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/map/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/menu/GameMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/menu/GameMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/menu/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/menu/MainMenu.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +51,9 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Wumpus [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Wumpus [dependency:purge-local-repository].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Wumpus [install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -53,6 +66,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn dependency:purge-local-repository " />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="wumpus.Main" />
@@ -85,7 +103,8 @@
       <workItem from="1704413297948" duration="4380000" />
       <workItem from="1704417772038" duration="499000" />
       <workItem from="1704457946468" duration="6829000" />
-      <workItem from="1704534390808" duration="3930000" />
+      <workItem from="1704534390808" duration="6046000" />
+      <workItem from="1704543550260" duration="3464000" />
     </task>
     <servers />
   </component>
