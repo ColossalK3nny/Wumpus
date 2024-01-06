@@ -62,9 +62,9 @@ public class Hero {
     public void fallIntoPit() {
         if (arrows > 0) {
             arrows--;
-            System.out.println("Beleestél a verembe és elhagytál egy nyilat.");
+            System.out.println("Ouuch. You fell into a pit and missed an arrow.");
         } else {
-            System.out.println("Már minden nyiladat elhagytad.");
+            System.out.println("You fell into a pit and you have no more arrows.");
         }
     }
 

@@ -186,7 +186,7 @@ public class GameMenu {
                 }
                 if (row < 0 || row >= rooms.length || col < 0 || col >= rooms[0].length || rooms[row][col].getSymbol() == 'W') {
                     hitWall = true;
-                    System.out.println("Your arrow hit a wall or disappeared.");
+                    System.out.println("Your arrow hit a wall and destroyed.");
                 } else {
                     // Ellenőrzi a szomszédos cellákat Wumpus jelenlétére
                     hitWumpus = checkForWumpusAround(row, col);

@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ce0d0c3f-1abf-458b-b201-3bbd80ab5fb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Database/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Database/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/Player/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/Player/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/menu/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/menu/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/wumpus/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wumpus/menu/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Database/wumpusdb.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Database/wumpusdb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Database/wumpusdb.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Database/wumpusdb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/Player/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/Player/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/menu/GameMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/menu/GameMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/wumpus/menu/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/wumpus/menu/MainMenu.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +85,7 @@
       <workItem from="1704413297948" duration="4380000" />
       <workItem from="1704417772038" duration="499000" />
       <workItem from="1704457946468" duration="6829000" />
+      <workItem from="1704534390808" duration="3930000" />
     </task>
     <servers />
   </component>

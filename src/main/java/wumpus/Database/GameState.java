@@ -22,8 +22,8 @@ public class GameState {
         this.heroColumn = heroColumn;
         this.heroDirection = heroDirection;
         this.wumpusCount = wumpusCount;
-        this.heroArrows = heroArrows;  // hozzáadva
-        this.heroHasGold = heroHasGold;  // hozzáadva
+        this.heroArrows = heroArrows;
+        this.heroHasGold = heroHasGold;
     }
 
     public int getHeroArrows() {
